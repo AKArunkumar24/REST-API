@@ -1,42 +1,40 @@
 package com.example.demo.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Glam")
+@Table(name="glamatable")
 public class Glam{
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-    String Cosmeticname;
-    String CosmeticBrand;
-    int CosmeticPrice;
+    String cosmeticians;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "glam")
+    private Brand brand;
     public int getId() {
         return id;
     }
     public void setId(int id) {
         this.id = id;
     }
-    public String getCosmeticname() {
-        return Cosmeticname;
+    public String getCosmeticians() {
+        return cosmeticians;
     }
-    public void setCosmeticname(String Cosmeticname) {
-        this.Cosmeticname = Cosmeticname;
+    public void setCosmeticians(String cosmeticians) {
+        this.cosmeticians = cosmeticians;
     }
-    public String getCosmeticBrand() {
-        return CosmeticBrand;
+    public Brand getBrand() {
+        return brand;
     }
-    public void setCosmeticBrand(String CosmeticBrand) {
-        this.CosmeticBrand = CosmeticBrand;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
-    public int getCosmeticPrice() {
-        return CosmeticPrice;
-    }
-    public void setCosmeticPrice(int CosmeticPrice) {
-        this.CosmeticPrice = CosmeticPrice;
-}
-
+    
 }

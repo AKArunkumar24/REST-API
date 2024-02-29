@@ -1,5 +1,15 @@
 package com.example.demo.controller;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Glam;
@@ -7,16 +17,6 @@ import com.example.demo.model.Login;
 import com.example.demo.service.GlamService;
 import com.example.demo.service.LoginService;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class Glamcontroller {
@@ -62,4 +62,13 @@ public class Glamcontroller {
     public Optional <Glam> getByid (@PathVariable int id) {
         return g.getByid(id);
     }
+    @GetMapping("/page/{b}/{a}")
+    public List<Glam> getMethodName(@PathVariable int b,@PathVariable int a) {
+        return  g.page(b, a);
+    }
+    @GetMapping("/sort/{a}")
+    public List<Glam> getMethodName(@PathVariable String a) {
+        return  g.sort(a);
+    }
+    
 }
